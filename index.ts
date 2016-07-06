@@ -4,15 +4,18 @@ interface Thing {
     id?: number
 }
 
-interface ThingInstance extends Instance<Thing, ThingInstance> {
+interface ThingInstance extends Instance<ThingInstance, Thing> {
     id: number
 }
 
 const attributes : DefineAttributes = {};
 const options : DefineOptions<ThingInstance> = {};
 
+
+
+
 class Creator {
-    public create(sequelize: Connection): Model<Thing, ThingInstance> {
-        return sequelize.define<Thing, ThingInstance>('thing', attributes, options);
+    public create(sequelize: Connection): Model<ThingInstance, Thing> {
+        return sequelize.define<ThingInstance, Thing>('thing', attributes, options);
     }
 }
